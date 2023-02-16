@@ -1,0 +1,23 @@
+name: pipeline
+on: [push]
+env:
+  ARTIFACTORY_NAME:  sample artifactory;
+jobs:
+  Test:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Checkout the code 
+        uses: actions/checkout@v1
+      - name: Runs the python script
+        run: python hell.py
+  Build:
+      needs: [Test]
+      runs-on: ubuntu-latest
+      steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v1
+      - name: Creates an artifactory
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: ${{ env.ARTIFACTORY_NAME }}
+          path: .
