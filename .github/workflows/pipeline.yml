@@ -9,7 +9,7 @@ jobs:
       - name: Checkout the code 
         uses: actions/checkout@v1
       - name: Runs the python script
-        run: python hell.py
+        run: python test.py
   Build:
       needs: [Test]
       runs-on: ubuntu-latest
